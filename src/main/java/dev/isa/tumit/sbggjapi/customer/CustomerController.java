@@ -10,10 +10,10 @@ import java.util.List;
 public class CustomerController {
 
     @Autowired
-    private CustomerRepository customerRepository;
+    private CustomerService customerService;
 
     @GetMapping("/customers")
     List<Customer> list() {
-        return customerRepository.findAll();
+        return customerService.list();
     }
 }

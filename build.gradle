@@ -1,3 +1,4 @@
+//file:noinspection GroovyAssignabilityCheck
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.2.1'
@@ -20,9 +21,32 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'com.microsoft.sqlserver:mssql-jdbc:11.2.3.jre17'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
-tasks.named('test') {
-	useJUnitPlatform()
+testing {
+	suites {
+		configureEach {
+			useJUnitJupiter()
+			dependencies {
+				implementation project()
+				var implementations = configurations.implementation.dependencies.toList();
+				var testImplementations = configurations.testImplementation.dependencies.toList();
+				(implementations + testImplementations).forEach { d-> implementation(d) }
+			}
+		}
+
+		integrationTest(JvmTestSuite) {
+			sources {
+				java {
+					srcDirs = ['src/test-integration/java']
+				}
+				resources {
+					srcDirs = ['src/test-integration/resources']
+				}
+			}
+		}
+
+	}
 }
