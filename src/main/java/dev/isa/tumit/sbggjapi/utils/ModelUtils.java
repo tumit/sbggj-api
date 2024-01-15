@@ -3,7 +3,7 @@ package dev.isa.tumit.sbggjapi.utils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 
-public class Otils {
+public class ModelUtils {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
 

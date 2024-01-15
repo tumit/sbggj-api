@@ -1,6 +1,6 @@
 package dev.isa.tumit.sbggjapi.budget;
 
-import dev.isa.tumit.sbggjapi.utils.Otils;
+import dev.isa.tumit.sbggjapi.utils.ModelUtils;
 import dev.isa.tumit.sbggjapi.calendar.CalendarService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -36,7 +36,7 @@ public class RequirementServiceTests {
                 .status(Requirement.Status.PENDING)
                 .build();
 
-        Requirement savedRequirement = Otils.copy(requirement, Requirement.class);
+        Requirement savedRequirement = ModelUtils.copy(requirement, Requirement.class);
         savedRequirement.setStatus(Requirement.Status.APPROVED);
 
         when(calendarService.isWorkingDay(approveDate)).thenReturn(true);
@@ -60,7 +60,7 @@ public class RequirementServiceTests {
                 .status(Requirement.Status.PENDING)
                 .build();
 
-        Requirement savedRequirement = Otils.copy(requirement, Requirement.class);
+        Requirement savedRequirement = ModelUtils.copy(requirement, Requirement.class);
         savedRequirement.setStatus(Requirement.Status.APPROVED);
 
         when(calendarService.isWorkingDay(approveDate)).thenReturn(true);
